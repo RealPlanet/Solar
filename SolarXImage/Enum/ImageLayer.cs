@@ -1,4 +1,4 @@
-﻿namespace SolarX.Enums
+﻿namespace SolarXImage.Enum
 {
     public enum ImageLayer
     {
