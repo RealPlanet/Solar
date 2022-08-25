@@ -61,11 +61,12 @@ namespace SolarX.Utility.Console
             for (int i = 1; i < textLines.Length; i++)
             {
                 string line = textLines[i];
-                string lineColor = StringUtils.GetNumberInFrontOf(line);
+                string lineColor = StringUtils.GetNumberInFrontOf(line, out int number);
                 // Substring without allocating new memory
                 ReadOnlySpan<char> actualLineSpan = line.AsSpan(lineColor.Length);
+
                 builderText.Add(actualLineSpan.ToString());
-                if (!Enum.TryParse<ConsoleColor>(lineColor, out ConsoleColor color))
+                if (!Enum.IsDefined(typeof(ConsoleColor), number) || !Enum.TryParse<ConsoleColor>(lineColor, out ConsoleColor color))
                 {
                     builderColors.Add(builderColors[builderColors.Count - 1]);
                     continue;

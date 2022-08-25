@@ -8,7 +8,8 @@ using System.Numerics;
 namespace SolarXCod.SeLibWrapper.XModel
 {
     /// <summary>
-    /// Handles writing SEModel files into xmodel_bin/export files. Code was taken from https://github.com/dtzxporter/CODTools/ and
+    /// Handles writing SEModel files into xmodel_bin/export files.
+    /// Original source https://github.com/dtzxporter/CODTools/ and
     /// adapted to work in this project.
     /// </summary>
     internal class XModel
@@ -20,7 +21,7 @@ namespace SolarXCod.SeLibWrapper.XModel
 
         public XModel(SEModel model)
         {
-            this._model = model;
+            _model = model;
         }
 
         public uint VertexCount()
