@@ -1,5 +1,5 @@
 ﻿using FastBitmapLib;
-using SolarX.Enums;
+using SolarXImage.Enum;
 using System.Drawing;
 
 namespace SolarX.Image

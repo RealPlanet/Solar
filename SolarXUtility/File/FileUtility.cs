@@ -3,10 +3,17 @@ using System.IO;
 
 namespace T7GDTMaker.Files
 {
-    public class FileUtils
+    public static class FileUtility
     {
         private static readonly string numberPattern = " ({0})";
 
+        /// <summary>
+        /// Finds the next available file name to prevent overwriting of already existing files. <br/>
+        /// For example, if a file named "abcd.json" already exists this method will return "abcd (1).json". <br/>
+        /// This method works with or without file extension.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static string NextAvailableFilename(string path)
         {
             // Short-cut if already available

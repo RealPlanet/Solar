@@ -44,10 +44,12 @@ namespace SolarX.Utility.Console
 
         public static ColoredText From(string originalText, string colorMarker = "^") => new ColoredText(originalText, colorMarker);
 
+        /// <summary>
+        /// Generates the Color/Text pairs from the given source text
+        /// </summary>
+        /// <returns>true if the operation was successful</returns>
         public bool BakeText()
         {
-            bool isValid = false;
-
             ImmutableArray<ConsoleColor>.Builder builderColors = ImmutableArray.CreateBuilder<ConsoleColor>();
             ImmutableArray<string>.Builder builderText = ImmutableArray.CreateBuilder<string>();
 
@@ -61,7 +63,7 @@ namespace SolarX.Utility.Console
             for (int i = 1; i < textLines.Length; i++)
             {
                 string line = textLines[i];
-                string lineColor = StringUtils.GetNumberInFrontOf(line, out int number);
+                string lineColor = StringUtility.GetNumberInFrontOf(line, out int number);
                 // Substring without allocating new memory
                 ReadOnlySpan<char> actualLineSpan = line.AsSpan(lineColor.Length);
 
@@ -78,8 +80,9 @@ namespace SolarX.Utility.Console
             BakedColors = builderColors.ToImmutableArray();
             BakedText = builderText.ToImmutableArray();
 
-            m_Baked = isValid;
-            return isValid;
+            // Support for errors if in the future this method changes
+            m_Baked = true;
+            return true;
         }
 
         private ColoredText(string originalText, string colorMarker, bool doBake = false)
@@ -92,6 +95,10 @@ namespace SolarX.Utility.Console
                 BakeText();
         }
 
+        /// <summary>
+        /// Gets the next color/line pair of the text.
+        /// </summary>
+        /// <returns>A tuple of (ConsoleColor, string)</returns>
         public IEnumerable<(ConsoleColor, string)> NextLine()
         {
             if (!m_Baked)

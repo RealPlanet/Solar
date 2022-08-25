@@ -4,11 +4,11 @@ using System.IO;
 
 namespace SolarXCod.Converter
 {
-    /// <summary>
-    /// Converts a given file (must be SEModel) to either XMODEL_EXPORT or XMODEL_BIN
-    /// </summary>
     public static class SEModel2Xmodel
     {
+        /// <summary>
+        /// Converts a given file (must be SEModel) to XMODEL_EXPORT
+        /// </summary>
         public static void ConvertXmodelExport(FileInfo fileInfo)
         {
             string filePath = $"{fileInfo.Directory.FullName}\\{Path.GetFileNameWithoutExtension(fileInfo.Name)}.xmodel_export";
@@ -18,6 +18,9 @@ namespace SolarXCod.Converter
             xModel.WriteExport(File.Create(filePath));
         }
 
+        /// <summary>
+        /// Converts a given file (must be SEModel) to XMODEL_BIN
+        /// </summary>
         public static void ConvertXmodelBin(FileInfo fileInfo)
         {
             string filePath = $"{fileInfo.Directory.FullName}\\{Path.GetFileNameWithoutExtension(fileInfo.Name)}.xmodel_bin";
