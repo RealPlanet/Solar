@@ -4,6 +4,9 @@ using System.IO;
 
 namespace SolarXCod.Converter
 {
+    /// <summary>
+    /// Converts a given file (must be SEModel) to either XMODEL_EXPORT or XMODEL_BIN
+    /// </summary>
     public static class SEModel2Xmodel
     {
         public static void ConvertXmodelExport(FileInfo fileInfo)
